@@ -32,3 +32,7 @@ class JamieOliver(AbstractScraper):
     def instructions(self):
         instructions = self.soup.find("div", {"class": "instructions-wrapper"})
         return normalize_string(instructions.get_text())
+
+    def nutrients(self):
+        nutrients = self.soup.find("div", {"class": "nutrition-expanded"}).findall("div", {"class": "inner"})
+        return [normalize_string(nutrient.find("span", {"class": "title"}).get_text()) + ", " + normalize_string(nutrient.find("span", {"class": "top"}).get_text()) for nutritient in expanded_nutrition]
