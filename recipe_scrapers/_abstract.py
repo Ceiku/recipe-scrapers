@@ -120,3 +120,7 @@ class AbstractScraper(metaclass=ExceptionHandlingMetaclass):
         links_html = self.soup.findAll("a", href=True)
 
         return [link.attrs for link in links_html if link["href"] not in invalid_href]
+    
+    @Decorators.schema_org_priority
+    def nutrients(self):
+        raise NotImplementedError("This should be implemented.")
